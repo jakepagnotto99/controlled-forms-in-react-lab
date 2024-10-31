@@ -1,29 +1,12 @@
 import { useState } from 'react';
-<div className="bookshelfDiv">
-  <div className="formDiv">
-    <h3>Add a Book</h3>
-    {/* Form will go here */}
-  </div>
-  <div className="bookCardsDiv">{/* Book cards will display here */}</div>
-</div>
 import './App.css';
 import Bookshelf from './Bookshelf.jsx';
 
-const App = () => {
-  return (
-    <>
-      <h1>My Bookshelf</h1>
-      <Bookshelf />
-    </>
-  );
-};
-const [books, setBooks] = useState([
+  function BookShelf() {
+   const [books, setBooks] = useState([
     { title: 'Fourth Wing', author: 'Rebecca Yarros' },
     { title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis' },
-  ]);
-  function BookShelf() {
-    // State to hold the list of books
-    const [books, setBooks] = useState([]);
+  ]); 
   
     // State to hold the current form input for a new book
     const [newBook, setNewBook] = useState({
@@ -31,21 +14,18 @@ const [books, setBooks] = useState([
       author: ''
     });
   
-    // Event handler for input change
+    // // Event handler for input change
     const handleInputChange = (event) => {
       const { name, value } = event.target;
       // Update the newBook state while preserving other fields
-      setNewBook((prevBook) => ({
-        ...prevBook,
-        [name]: value
-      }));
+      setNewBook({...newBook,[event.target.name]: event.target.value})
     };
   
-    // Event handler for form submission
+    // // Event handler for form submission
     const handleSubmit = (event) => {
       event.preventDefault();
       // Add the new book to the books array
-      setBooks((prevBooks) => [...prevBooks, newBook]);
+      setBooks([...books, newBook]); //This line is the equivalant of books.push(newBook)
       // Reset the newBook state to clear the form
       setNewBook({
         title: '',
